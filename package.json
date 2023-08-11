@@ -1,0 +1,71 @@
+{
+    "name": "@impulsor/classifier",
+    "version": "1.0.0",
+    "description": "Product classification system with Tensorflow",
+    "main": "index.js",
+    "homepage": "https://github.com/andrehrferreira/impulsor-classifier",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/andrehrferreira/impulsor-classifier"
+    },
+    "bugs": {
+        "url": "https://github.com/andrehrferreira/impulsor-classifier/issues"
+    },
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development NODE_NO_WARNINGS=1 BLUEBIRD_WARNINGS=0 NODE_OPTIONS=--max_old_space_size=65536 nodemon -w src --exec 'yarn build && babel-node build/cluster.js' --ignore test",
+        "build": "babel src -s -D -d build",
+        "lint": "eslint '**/*.js'",
+        "lint:fix": "eslint '**/*.js' --fix",
+        "script": "yarn build && cross-env NODE_ENV=production NODE_NO_WARNINGS=1 NODE_OPTIONS=--max_old_space_size=65536 BLUEBIRD_WARNINGS=0 node --max-old-space-size=65536 --no-warnings build/script.js",
+        "script-gpu": "yarn build && cross-env NODE_ENV=production NODE_NO_WARNINGS=1 NODE_OPTIONS=--max_old_space_size=65536 BLUEBIRD_WARNINGS=0 node --max-old-space-size=65536 --no-warnings build/script-gpu.js"
+    },
+    "author": "Andre Ferreira",
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint"
+        }
+    },
+    "dependencies": {
+        "@babel/polyfill": "^7.8.7",
+        "@dekproject/mongoose": "^1.1.1",
+        "@dekproject/rabbitmq": "^2.0.2",
+        "@dekproject/scope": "^2.2.1",
+        "@google-cloud/language": "^4.0.0",
+        "@tensorflow-models/mobilenet": "^2.0.4",
+        "@tensorflow/tfjs": "^1.7.4",
+        "@tensorflow/tfjs-node": "^1.7.4",
+        "@tensorflow/tfjs-node-gpu": "^1.7.4",
+        "agentkeepalive": "^4.1.2",
+        "axios": "^0.19.2",
+        "barcoder": "^2.0.1",
+        "bull": "^3.14.0",
+        "cheerio": "^1.0.0-rc.3",
+        "child-process-exec-argv": "^1.0.4",
+        "cross-env": "^7.0.2",
+        "dotenv": "^8.2.0",
+        "expose-gc": "^1.0.0",
+        "express": "^4.17.1",
+        "fast-glob": "^3.2.2",
+        "fs-extra": "^9.0.0",
+        "fuzzyset.js": "^1.0.5",
+        "get-image-data": "^4.1.0",
+        "globby": "^11.0.0",
+        "googleapis": "^51.0.0",
+        "md5": "^2.2.1",
+        "minimist": "^1.2.5",
+        "nodemon": "^2.0.4",
+        "sharp": "^0.25.3",
+        "uniqid": "^5.2.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.9.6",
+        "@babel/node": "^7.8.7",
+        "@babel/preset-env": "^7.9.6",
+        "@babel/register": "^7.9.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^7.0.0",
+        "husky": "^4.2.5"
+    }
+}
